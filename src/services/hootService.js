@@ -12,8 +12,6 @@ const index = async () => {
   };
   
 // create route by gabe
-// src/services/hootService.js
-
 const create = async (hootFormData) => {
   try {
     const res = await fetch(BASE_URL, {
@@ -30,9 +28,19 @@ const create = async (hootFormData) => {
   }
 };
 
-// when merging we are exporting this three routes
-// export { index, show, create };
 
-//delete this when merging
-export { index, create };
 
+const show = async (hootId) => {
+    try {
+      const res = await fetch(`${BASE_URL}/${hootId}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      });
+      return res.json();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
+
+  export { index, show, create };
