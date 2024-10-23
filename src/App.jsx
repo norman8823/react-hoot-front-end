@@ -6,6 +6,9 @@ import Dashboard from './components/Dashboard/Dashboard';
 import SignupForm from './components/SignupForm/SignupForm';
 import SigninForm from './components/SigninForm/SigninForm';
 import * as authService from '../src/services/authService'; // import the authservice
+import HootDetails from './components/HootDetails/HootDetails';
+import {useParams} from 'react-router-dom';
+
 
 export const AuthedUserContext = createContext(null);
 
@@ -16,6 +19,7 @@ const App = () => {
     authService.signout();
     setUser(null);
   };
+
 
   return (
     <>
@@ -29,6 +33,7 @@ const App = () => {
           )}
           <Route path="/signup" element={<SignupForm setUser={setUser} />} />
           <Route path="/signin" element={<SigninForm setUser={setUser} />} />
+          <Route path="/hoots/:hootId" element={<HootDetails />} />
         </Routes>
       </AuthedUserContext.Provider>
     </>
