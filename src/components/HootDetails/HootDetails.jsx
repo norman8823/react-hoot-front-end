@@ -1,10 +1,24 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useParams } from 'react';
 import * as hootService from '../../services/hootService';
 
 
 const HootDetails = (props) => {
     if (!hoot) return <main>Loading...</main>;
+    const [hoot, setHoot] = useState(null)
+    const { hootId } = useParams();
+
+    
+useEffect(() => {
+    const fetchHoot = async () => {
+      const hootData = await hootService.show(hootId);
+      console.log('hootData', hootData);
+      setHoot(hootData);
+    };
+    fetchHoot();
+  }, [hootId]);
+console.log('hoot state:', hoot);
+
     return (
         <main>
           <header>
@@ -36,21 +50,6 @@ const HootDetails = (props) => {
       );
   };
 
-const [hoot, setHoot] = useState(null)
 
-
-useEffect(() => {
-    const fetchHoot = async () => {
-      const hootData = await hootService.show(hootId);
-      console.log('hootData', hootData);
-      setHoot(hootData);
-    };
-    fetchHoot();
-  }, [hootId]);
-console.log('hoot state:', hoot);
-
-const { hootId } = useParams();
-
-console.log('hootId', hootId)
   export default HootDetails;
   
