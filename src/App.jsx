@@ -9,6 +9,8 @@ import * as authService from '../src/services/authService'; // import the authse
 import HootList from './components/HootList';
 import HootForm from './components/HootForm/HootForm'
 import * as hootService from './services/hootService';
+import HootDetails from './components/HootDetails/HootDetails';
+import {useParams} from 'react-router-dom';
 
 export const AuthedUserContext = createContext(null);
 
