@@ -8,6 +8,8 @@ import SigninForm from './components/SigninForm/SigninForm';
 import * as authService from '../src/services/authService'; // import the authservice
 import { useState, createContext, useEffect } from 'react';
 import * as hootService from './services/hootService';
+import HootDetails from './components/HootDetails/HootDetails';
+import {useParams} from 'react-router-dom';
 
 export const AuthedUserContext = createContext(null);
 
