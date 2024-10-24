@@ -3,6 +3,7 @@ const HootList = (props) => {
    
 return (
     <main>
+      console.log(props.hoot)
       {props.hoots.map((hoot) => (
         <Link key={hoot._id} to={`/hoots/${hoot._id}`}>
           <article>
