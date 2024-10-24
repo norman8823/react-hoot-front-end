@@ -43,7 +43,7 @@ const show = async (hootId) => {
 
 const deleteHoot = async (hootId)=> {
   try {
-    const res = awit fetch(`${BASE_URL}/${hootId}`,{
+    const res = await fetch(`${BASE_URL}/${hootId}`,{
       method: 'DELETE',
       header: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -56,4 +56,27 @@ const deleteHoot = async (hootId)=> {
   }
 }
 
-  export { index, show, create, deleteHoot, };
+  const createComment = async (hootId, commentFormData) => {
+    try {
+      const res = await fetch(`${BASE_URL}/${hootId}/comments`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(commentFormData),
+      });
+      return res.json();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+  export {
+    index,
+    show,
+    create,
+    createComment,
+    deleteHoot
+  };
+
