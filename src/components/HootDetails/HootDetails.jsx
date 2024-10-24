@@ -1,9 +1,10 @@
 
 import { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import * as hootService from "../../services/hootService";
 import CommentForm from "../CommentForm/CommentForm";
 import { AuthedUserContext } from "../../App";
+
 
 const HootDetails = (props) => {
   const [hoot, setHoot] = useState(null);
@@ -23,9 +24,10 @@ const HootDetails = (props) => {
       setHoot(hootData);
     };
     fetchHoot();
-
   }, [hootid]);
+  
   console.log("hoot state:", hoot);
+  
   if (!hoot) return <main>Loading...</main>;
 
   return (
@@ -39,7 +41,8 @@ const HootDetails = (props) => {
         </p>
         {hoot.author._id === user._id && (
               <>
-               <button onClick={() => props.handleDeleteHoot(hootid)}>Delete</button>
+                <Link to={`/hoots/${hootid}/edit`}>Edit</Link>
+                <button onClick={() => props.handleDeleteHoot(hootid)}>Delete</button>
               </>
             )}
       </header>
