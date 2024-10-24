@@ -9,6 +9,7 @@ import * as authService from '../src/services/authService'; // import the authse
 import HootList from './components/HootList';
 import HootForm from './components/HootForm/HootForm'
 import * as hootService from './services/hootService';
+import HootDetails from './components/HootDetails/HootDetails';
 
 export const AuthedUserContext = createContext(null);
 
@@ -45,13 +46,14 @@ useEffect(() => {
       <AuthedUserContext.Provider value={user}>
         <NavBar user={user} handleSignout={handleSignout} />
         <Routes>
-
+  
   {user ? (
     
     <>
       <Route path="/" element={<Dashboard user={user} />} />
       <Route path="/hoots" element={<HootList hoots={hoots} />} />
       <Route path="/hoots/new" element={<HootForm handleAddHoot={handleAddHoot} />} />
+      <Route path="/hoots/:hootid" element={<HootDetails />} />
     </>
   ) : (
     
