@@ -3,10 +3,12 @@ import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import * as hootService from "../../services/hootService";
 import CommentForm from "../CommentForm/CommentForm";
+import { AuthedUserContext } from "../../App";
 
 const HootDetails = (props) => {
   const [hoot, setHoot] = useState(null);
   const { hootid } = useParams();
+  const user = useContext(AuthedUserContext)
 
   const handleAddComment = async (commentFormData) => {
     const newComment = await hootService.createComment(hootid, commentFormData);
@@ -37,7 +39,7 @@ const HootDetails = (props) => {
         </p>
         {hoot.author._id === user._id && (
               <>
-               <button onClick={() => props.handleDeleteHoot(hootId)}>Delete</button>
+               <button onClick={() => props.handleDeleteHoot(hootid)}>Delete</button>
               </>
             )}
       </header>

@@ -30,9 +30,9 @@ const App = () => {
     setHoots([newHoot, ...hoots]);
     navigate('/hoots')  
   };
-  const handleDeleteHoot = async (hootId)=> {
+  const handleDeleteHoot = async (hootid)=> {
     const deletedHoot = await hootService.deleteHoot(hootid);
-    setHoots(hoots.filter((hoot)=> hootId.id !== deletedhoot._Id));
+    setHoots(hoots.filter((hoot)=> hoot._id !== deletedHoot._Id));
     navigate('/hoots');
   };
   
@@ -58,7 +58,7 @@ useEffect(() => {
       <Route path="/" element={<Dashboard user={user} />} />
       <Route path="/hoots" element={<HootList hoots={hoots} />} />
       <Route path="/hoots/new" element={<HootForm handleAddHoot={handleAddHoot} />} />
-      <Route path="/hoots/:hootid" element={<HootDetails />} />
+      <Route path="/hoots/:hootid" element={<HootDetails handleDeleteHoot={handleDeleteHoot} />} />
     </>
   ) : (
     
