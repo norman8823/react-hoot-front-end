@@ -29,6 +29,11 @@ const App = () => {
     setHoots([newHoot, ...hoots]);
     navigate('/hoots')  
   };
+  const handleDeleteHoot = async (hootId)=> {
+    const deletedHoot = await hootService.deleteHoot(hootid);
+    setHoots(hoots.filter((hoot)=> hootId.id !== deletedhoot._Id));
+    navigate('/hoots');
+  };
   
 useEffect(() => {
   const fetchAllHoots = async () => {

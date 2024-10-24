@@ -41,6 +41,19 @@ const show = async (hootId) => {
     }
   };
 
+const deleteHoot = async (hootId)=> {
+  try {
+    const res = awit fetch(`${BASE_URL}/${hootId}`,{
+      method: 'DELETE',
+      header: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
+    return res.json();
+  } catch (error) {
+    console.log(error)
+    
+  }
+}
 
-
-  export { index, show, create };
+  export { index, show, create, deleteHoot, };
